@@ -10,8 +10,8 @@
                         class="fas fa-bars pr-2 text-white mr-4"
                         onclick="sidebarToggle()"
                     ></i>                    
-                    <a href="{{ route('dashboard') }}">                        
-                        <img src="{{ asset('/img/logo.png') }}" alt="">
+                    <a href="{{ url('/') }}">                        
+                        <img src="{{ asset('./img/logo.png') }}" alt="logo">
                     </a>
                                         
                 </div>
@@ -29,7 +29,13 @@
                             </x-jet-nav-link>                     
                         </div>
                         @else
-                        <p>Ini User OM</p>
+                        <div class="flex-shrink-0 flex items-center">
+                            <a
+                            href="{{ url('/') }}"                                    
+                                class="text-white ml-5 text-lg p-2 no-underline italic bold"
+                                >Sewa Tenda</a
+                            >
+                        </div>
                         @endif
                     @endauth
                 @endif

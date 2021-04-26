@@ -16,13 +16,13 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/cari', [HomeController::class, 'cari']);
-
-
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');
+
+
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/cari', [HomeController::class, 'cari']);
 
 Route::group(['auth:sanctum', 'verified'], function(){
     Route::middleware(['admin'])->group(function () {
@@ -34,7 +34,8 @@ Route::group(['auth:sanctum', 'verified'], function(){
         Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('edit');
         Route::put('/edit/{id}', [AdminController::class, 'update'])->name('simpan');
 
-        Route::delete('/delete/{id}', [AdminController::class, 'destroy'])->name('hapus');
- 
+        Route::delete('/delete/{id}', [AdminController::class, 'destroy'])->name('hapus');                
+
+        Route::get('/cari', [AdminController::class, 'cari']);
     });
 });

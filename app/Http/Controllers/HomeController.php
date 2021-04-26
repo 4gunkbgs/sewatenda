@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index(){
 
-        $barang = Barang::all();
+        $barang = Barang::with('jenisBarang')->paginate(5);        
         return view('home', ['barang' => $barang]);
     }
 

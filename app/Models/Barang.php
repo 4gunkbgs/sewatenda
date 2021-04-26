@@ -12,7 +12,12 @@ class Barang extends Model
     protected $keyType = 'string';
     public $incrementing = false;
     
-    protected $fillable = ['id_barang', 'jenis', 'nama', 'stok', 'harga', 'ganti_rusak', 'ganti_hilang'];
+    protected $fillable = ['id_barang', 'jenis', 'nama', 'stok', 'harga', 'ganti_rusak', 'ganti_hilang', 'jenis_barang_id'];
+    
+    public function jenisBarang()
+    {
+        return $this->belongsTo(JenisBarang::class);
+    }
     
     use HasFactory;
 }

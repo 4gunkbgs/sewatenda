@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Barang;
+use App\Models\JenisBarang;
 
 class AdminController extends Controller
 {
@@ -15,7 +16,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $barang = Barang::all();        
+        $barang = Barang::with('jenisBarang')->paginate(5);       
 
         return view('admin.dashboard', ['barang' => $barang]);
     }
@@ -27,7 +28,9 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.tambah');
+        $jenisbarang = JenisBarang::all(); 
+
+        return view('admin.tambah', ['jenisbarang' => $jenisbarang]);
     }
 
     /**
@@ -40,37 +43,30 @@ class AdminController extends Controller
     {
         $this->validate($request, 
         [            
-            'id_barang'         =>  'required|unique:barang|min:5|max:5',
-            'nama'              =>  'required|max:30',
-            'jenis'             =>  'required',
-            'stok'              =>  'required|numeric|max:500',
-            'harga '            =>  'required|numeric|min:10000',
-            'ganti_rusak'       =>  'required|numeric|min:10000',
-            'ganti_hilang'      =>  'required|numeric|min:10000',
+            'id_barang'         =>  'unique:barang|min:4|max:4',
+            'nama'              =>  'max:30',
+            'jenis_barang_id'   =>  'required',
+            'stok'              =>  'numeric|max:500',
+            'harga '            =>  'numeric|min:10000',
+            'ganti_rusak'       =>  'numeric|min:10000',
+            'ganti_hilang'      =>  'numeric|min:10000',
         ],
-        [
-            'id_barang.required'=>  'Id barang harus diisi!' ,  
+        [            
             'id_barang.unique'  =>  'Id barang sudah pernah dibuat!',
             'id_barang.min'     =>  'Id barang kurang',
             'id_barang.max'     =>  'Id barang lebih',
-
-            'nama.required'     =>  'Nama barang harus diisi!',
+            
             'nama.max'          =>  'Nama barang terlalu panjang',
 
-            'jenis'             =>  'Jenis barang harus diisi!',
-
-            'stok.required'     =>  'Stok barang harus diisi!',            
-            'stok.max'          =>  'Stok barang maksimal 500',
-
-            'harga.required'        =>  'Harga Barang harus diisi!',
-            'ganti_rusak.required'  =>  'Harga barang rusak harus diisi!',     
-            'ganti_hilang.required' =>  'Harga hilang harus diisi!'
+            'jenis_barang_id'   =>  'Jenis barang harus diisi!',
+                    
+            'stok.max'          =>  'Stok barang maksimal 500',                      
         ]);
         
         $barang = new Barang;
         $barang->id_barang = $request->id_barang;
         $barang->nama = $request->nama_barang;
-        $barang->jenis = $request->jenis_barang;
+        $barang->jenis_barang_id = $request->jenis_barang_id;
         $barang->stok = $request->stok;
         $barang->harga = $request->harga;
         $barang->ganti_rusak = $request->ganti_rusak;
@@ -82,23 +78,47 @@ class AdminController extends Controller
     
     public function edit($id)
     {
-        $barang = Barang::find($id);
+        $barang = Barang::with('jenisBarang')->find($id);        
+        $jenisbarang = JenisBarang::all(); 
 
-        return view('admin.edit', compact('barang'));
+        return view('admin.edit', compact('barang', 'jenisbarang'));
     }
 
     public function update(Request $request, $id)
     {
         $barang = Barang::find($id);
+        
+        // $this->validate($request, 
+        // [            
+        //     'id_barang'         =>  'unique:barang|min:4|max:4',
+        //     'nama'              =>  'max:30',
+        //     'jenis_barang_id'   =>  'required',
+        //     'stok'              =>  'numeric|max:500',
+        //     'harga '            =>  'numeric|min:10000',
+        //     'ganti_rusak'       =>  'numeric|min:10000',
+        //     'ganti_hilang'      =>  'numeric|min:10000',
+        // ],
+        // [            
+        //     'id_barang.unique'  =>  'Id barang sudah pernah dibuat!',
+        //     'id_barang.min'     =>  'Id barang kurang',
+        //     'id_barang.max'     =>  'Id barang lebih',
+            
+        //     'nama.max'          =>  'Nama barang terlalu panjang',
+
+        //     'jenis_barang_id'   =>  'Jenis barang harus diisi!',
+                    
+        //     'stok.max'          =>  'Stok barang maksimal 500',                      
+        // ]);
 
         $barang->id_barang = $request->id_barang;
         $barang->nama = $request->nama_barang;
-        $barang->jenis = $request->jenis_barang;
+        $barang->jenis_barang_id = $request->jenis_barang_id;
         $barang->stok = $request->stok;
         $barang->harga = $request->harga;
         $barang->ganti_rusak = $request->ganti_rusak;
         $barang->ganti_hilang = $request->ganti_hilang;
         $barang->save();
+        
         return redirect('/dashboard')->with('status', 'Data Berhasil Diedit');
     }
 
@@ -109,5 +129,13 @@ class AdminController extends Controller
         $barang->delete();
 
         return redirect('/dashboard')->with('status', 'Data Berhasil Dihapus');
+    }
+
+    public function cari(Request $request){
+
+        $cari = $request->search;  
+
+        $barang = Barang::where('nama','like','%'.$cari.'%')->get();        
+        return view('admin.dashboard', ['barang' => $barang]);
     }
 }

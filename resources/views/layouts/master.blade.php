@@ -13,11 +13,13 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+        <link rel="icon" href="{{ asset('./img/logo.png')}}" type="image/png">
+
         <!-- Css -->
         <link rel="stylesheet" href="{{ asset('./dist/styles.css')}}">
         <link rel="stylesheet" href="{{ asset('./dist/all.css')}}">
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
-
+        
         @livewireStyles
 
         <!-- Scripts -->
@@ -35,14 +37,19 @@
                         @livewire('navigation-menu')
                     @else
                     
-                    <header class="bg-nav">
+                    <header class="bg-gray-500 border-b border-gray-200">
                         <div class="flex justify-between">
                             <div class="p-1 mx-3 inline-flex items-center">
                                 <i
                                     class="fas fa-bars pr-2 text-white"
                                     onclick="sidebarToggle()"
                                 ></i>
-                                <h1 class="text-white p-2">Logo</h1>
+                                <img class="mx-3" src="{{ asset('./img/logo.png') }}" alt="">
+                                <a
+                                href="{{ url('/') }}"                                    
+                                    class="text-white p-2 no-underline italic"
+                                    >Sewa Tenda</a
+                                >
                             </div>
                             <div class="p-1 flex flex-row items-center">
                                 <a
@@ -51,7 +58,7 @@
                                     >Login</a
                                 >
                                 <a
-                                href="{{route('register')}}"
+                                href="{{ route('register') }}"
                                     onclick="profileToggle()"
                                     class="text-white p-2 no-underline"
                                     >Register</a
@@ -75,7 +82,7 @@
                             class="w-full h-full py-3 px-2 border-b border-light-border bg-white"
                         >
                             <a
-                            href="index.html"
+                            href="#"
                             class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
                             >
 
@@ -87,7 +94,7 @@
                             class="w-full h-full py-3 px-2 border-b border-light-border bg-white"
                         >
                             <a
-                            href="index.html"
+                            href="#"
                             class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
                             >
                                                 
