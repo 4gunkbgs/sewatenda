@@ -22,7 +22,7 @@ use App\Http\Controllers\AdminController;
 
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/cari', [HomeController::class, 'cari']);
+Route::get('/cari/barang', [HomeController::class, 'cari'])->name('search2');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
@@ -39,6 +39,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
         Route::delete('/delete/{id}', [AdminController::class, 'destroy'])->name('hapus');                
         
-        Route::get('/cari', [AdminController::class, 'cari'])->name('admin.search');
+        Route::get('/cari', [AdminController::class, 'cari'])->name('search1');
     });
 });
