@@ -105,7 +105,7 @@
                                                     
                         </ul>
                     </aside>
-                    <!--/Sidebar-->
+                <!--/Sidebar-->
 
                     <!--Main-->
                         @yield('main')

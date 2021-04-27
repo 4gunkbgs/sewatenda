@@ -16,7 +16,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $barang = Barang::with('jenisBarang')->paginate(5);       
+        $barang = Barang::with('jenisBarang')->paginate(7);       
 
         return view('admin.dashboard', ['barang' => $barang]);
     }
@@ -135,7 +135,7 @@ class AdminController extends Controller
 
         $cari = $request->search;  
 
-        $barang = Barang::where('nama','like','%'.$cari.'%')->get();        
+        $barang = Barang::where('nama','like','%'.$cari.'%')->paginate(7);        
         return view('admin.dashboard', ['barang' => $barang]);
     }
 }

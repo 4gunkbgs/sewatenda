@@ -61,7 +61,7 @@
                       <td>{{ $brg->ganti_rusak }}</td>
                       <td>{{ $brg->ganti_hilang }}</td>
                       <td>
-                        <a href="#" class="w-2 bg-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sewa</a>
+                        <a href="/sewa" class="w-2 bg-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sewa</a>
                       </td>                                                                             
                   </tr>
                   @endforeach                       
