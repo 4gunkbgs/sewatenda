@@ -109,10 +109,9 @@ class AdminController extends Controller
                     
         //     'stok.max'          =>  'Stok barang maksimal 500',                      
         // ]);
-
-        $barang->id_barang = $request->id_barang;
+        
         $barang->nama = $request->nama_barang;
-        $barang->jenis_barang_id = $request->jenis_barang_id;
+        
         $barang->stok = $request->stok;
         $barang->harga = $request->harga;
         $barang->ganti_rusak = $request->ganti_rusak;

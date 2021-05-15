@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index(){
 
-        $barang = Barang::with('jenisBarang')->paginate(7);        
+        $barang = Barang::with('jenisBarang')->get();        
         return view('home', ['barang' => $barang]);
     }
 
@@ -17,7 +17,7 @@ class HomeController extends Controller
 
         $cari = $request->search;  
 
-        $barang = Barang::where('nama','like','%'.$cari.'%')->paginate(7);        
+        $barang = Barang::where('nama','like','%'.$cari.'%')->get();        
         return view ('home', ['barang' => $barang]);
     }
 

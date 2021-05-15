@@ -68,9 +68,7 @@
                                     @method('DELETE')
                                     <button type="submit" onclick="return confirm('Yakin Hapus Data?')" class="text-red-600 hover:text-red-900">Hapus</button>
                                 </form>
-                            </td>
-                        
-                            
+                            </td>                                                    
                         </tr>
                         @endforeach                       
                     </tbody>

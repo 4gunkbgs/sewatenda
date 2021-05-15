@@ -68,9 +68,9 @@
               </tbody>
               </table>
               <hr>              
-                <div class="m-4 ">
+                {{-- <div class="m-4 ">
                   {{ $barang->links() }}
-                </div>
+                </div> --}}
               </div>
             </div>
           </div>
