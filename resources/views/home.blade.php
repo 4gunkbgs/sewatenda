@@ -3,7 +3,7 @@
 @endsection
 
 <x-master-layout>
-  @section('main')
+  
     <!--Main-->
     <main class="bg-white-300 flex-1 p-3 overflow-hidden">
       <div class="flex flex-col">                                             
@@ -79,5 +79,5 @@
         <!-- /Cards Section Ends Here -->  
       </div>
     </main>
-  @endsection
+
 </x-master-layout>

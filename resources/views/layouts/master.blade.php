@@ -108,7 +108,7 @@
                 <!--/Sidebar-->
 
                     <!--Main-->
-                        @yield('main')
+                        {{ $slot }}
                     <!--/Main-->
                 </div>
                 
@@ -120,7 +120,7 @@
             </div>
         </div>    
 
-        <script src="{{asset('./js/main.js')}}"></script>
+        <script src="{{ asset('./js/main.js') }}"></script>
 
         @stack('modals')        
         @livewireScripts

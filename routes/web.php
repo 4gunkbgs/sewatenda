@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\DashboardPage;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +29,15 @@ Route::get('/cari/barang', [HomeController::class, 'cari'])->name('search2');
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/sewa', [HomeController::class, 'sewa']);
-
+    
     Route::middleware(['admin'])->group(function () {
-        Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+        // Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+        
+        Route::get('/dashboard', DashboardPage::class)->name('dashboard');
 
-        Route::get('/tambah', [AdminController::class, 'create'])->name('create');
+        // Route::get('/tambah', [AdminController::class, 'create'])->name('create');
+        // Route::get('/tambah', Dashboard::class)->name('create');
+        
         Route::post('/tambah', [AdminController::class, 'store'])->name('tambah');
 
         Route::get('/edit/{id}', [AdminController::class, 'edit'])->name('edit');
