@@ -1,10 +1,4 @@
-@section('title')
-    Sewa Barang
-@endsection
-
-<x-master-layout>
-  
-    <!--Main-->
+<div>
     <main class="bg-white-300 flex-1 p-3 overflow-hidden">
       <div class="flex flex-col">                                             
         
@@ -57,11 +51,11 @@
                       <td>{{ $brg->nama }}</td>
                       <td>{{ $brg->jenisBarang->jenis_barang }}</td>
                       <td>{{ $brg->stok }}</td>
-                      <td> @money($brg->harga)</td>                            
-                      <td> @money($brg->ganti_rusak)  </td>
-                      <td> @money($brg->ganti_hilang)</td>
+                      <td>{{ $brg->harga }}</td>                            
+                      <td>{{ $brg->ganti_rusak }}</td>
+                      <td>{{ $brg->ganti_hilang }}</td>
                       <td>
-                        <a href="/sewa/{{ $brg->id_barang }}" class="w-2 bg-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sewa</a>
+                        <button class="bg-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sewa</button>
                       </td>                                                                             
                   </tr>
                   @endforeach                       
@@ -79,5 +73,4 @@
         <!-- /Cards Section Ends Here -->  
       </div>
     </main>
-
-</x-master-layout>
+</div>

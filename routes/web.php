@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Livewire\SewaComponent;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\DashboardPage;
 
@@ -28,7 +29,8 @@ Route::get('/cari/barang', [HomeController::class, 'cari'])->name('search2');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    Route::get('/sewa', [HomeController::class, 'sewa']);
+    // Route::get('/sewa', [HomeController::class, 'sewa']);
+    Route::get('/sewa/{id}', SewaComponent::class);
     
     Route::middleware(['admin'])->group(function () {
         // Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
