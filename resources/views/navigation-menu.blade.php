@@ -25,6 +25,16 @@
                                 {{ __('Dashboard') }}
                             </x-jet-nav-link>                                                                           
                         </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-jet-nav-link href="{{ route('editPesanan') }}" :active="request()->routeIs('editPesanan')">
+                                {{ __('Edit Pesanan') }}
+                            </x-jet-nav-link>                                                                           
+                        </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-jet-nav-link href="{{ route('pengembalian') }}" :active="request()->routeIs('pengembalian')">
+                                {{ __('Pengembalian') }}
+                            </x-jet-nav-link>                                                                           
+                        </div>
                         @else
                         <div class="flex-shrink-0 flex items-center">
                             <a

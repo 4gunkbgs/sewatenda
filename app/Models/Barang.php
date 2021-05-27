@@ -18,6 +18,11 @@ class Barang extends Model
     {
         return $this->belongsTo(JenisBarang::class);
     }
+
+    public function pesanan()
+    {
+        return $this->hasMany(Pesanan::class);
+    }
     
     use HasFactory;
 }

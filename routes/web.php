@@ -7,6 +7,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Livewire\SewaComponent;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\DashboardPage;
+use App\Http\Livewire\PesananComponent;
+use App\Http\Livewire\EditPesanan;
+use App\Http\Livewire\PengembalianComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +34,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Route::get('/sewa', [HomeController::class, 'sewa']);
     Route::get('/sewa/{id}', SewaComponent::class);
+    Route::get('/pesanan/{id}', PesananComponent::class);
     
     Route::middleware(['admin'])->group(function () {
         // Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
         
         Route::get('/dashboard', DashboardPage::class)->name('dashboard');
+        Route::get('/pesanan', EditPesanan::class)->name('editPesanan');
+        Route::get('/pengembalian', PengembalianComponent::class)->name('pengembalian');
 
         // Route::get('/tambah', [AdminController::class, 'create'])->name('create');
         // Route::get('/tambah', Dashboard::class)->name('create');

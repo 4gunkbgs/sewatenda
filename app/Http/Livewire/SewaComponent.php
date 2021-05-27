@@ -34,7 +34,17 @@ class SewaComponent extends Component
 
     public function store($id){        
 
-        $user_id = auth()->user()->id;      
+        $this->validate(
+            [
+                'jumlah_pesanan'    =>  'required|numeric',
+                'tanggal_mulai'     =>  'required|date',
+                'tanggal_selesai'   =>  'required|date',                                 
+            ]
+        );
+
+        $user_id = auth()->user()->id;
+        
+        
         
         Pesanan::create([
             'jumlah_pesanan'    => $this->jumlah_pesanan,
@@ -43,6 +53,12 @@ class SewaComponent extends Component
             'barang_id'         => $id,
             'users_id'          => $user_id,
         ]);
+
+        session()->flash('message', 'Berhasil Menyewa! Silahkan Cek Pesanan Anda');
+
+        return redirect()->to('/');
     }
+
+    
    
 }

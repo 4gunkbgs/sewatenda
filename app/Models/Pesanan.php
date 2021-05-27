@@ -18,11 +18,21 @@ class Pesanan extends Model
                             'barang_id',
                             'users_id',
                             'konfirm',
-                            'ganti_rusak',
-                            'ganti_hilang'
+                            'jumlah_rusak',
+                            'jumlah_hilang'
                         ];
 
     
-                        
+    public function barang()
+    {
+        return $this->belongsTo(Barang::class, 'barang_id', 'id_barang');
+        
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users_id', 'id');
+    }
+
     use HasFactory;
 }

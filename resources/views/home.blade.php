@@ -31,6 +31,11 @@
                 </form>
               </div>
               {{-- end search bar --}}
+              @if (session()->has('message'))
+                <div class="">
+                  {{ session('message') }}
+                </div>
+              @endif
             </div>
             <div class="table-responsive">
               <table class="table text-grey-darkest">

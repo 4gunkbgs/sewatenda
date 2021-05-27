@@ -51,20 +51,31 @@
             <div class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name">
                 @money($barang->ganti_hilang)
             </div>
-
+            
             <label class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2">
                 Jumlah Pesanan
-            </label>       
+            </label>
+            @if ($errors->has('jumlah_pesanan'))
+                    <p class="text-red-500 text-xs italic">{{ $errors->first('ganti_hilang') }}</p>
+            @endif
+
             <input wire:model="jumlah_pesanan" type="number" placeholder="Masukkan Jumlah Barang Yang Ingin Dipesan" class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
 
             <label class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2" for="grid-first-name">
                 Tanggal Mulai Pinjam
-            </label>       
+            </label>            
+            @if ($errors->has('tanggal_mulai'))
+                    <p class="text-red-500 text-xs italic">{{ $errors->first('ganti_hilang') }}</p>
+            @endif
+                  
             <input wire:model="tanggal_mulai" type="date" class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
 
             <label class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2" for="grid-first-name">
                 Tanggal Selesai Pinjam
-            </label>       
+            </label> 
+            @if ($errors->has('tanggal_mulai'))
+                    <p class="text-red-500 text-xs italic">{{ $errors->first('ganti_hilang') }}</p>
+            @endif      
             <input wire:model="tanggal_selesai" type="date" class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
             
             <div class="flex justify-between">

@@ -81,14 +81,27 @@
                         <li
                             class="w-full h-full py-3 px-2 border-b border-light-border bg-white"
                         >
+                        @if(Route::has('login'))
+                            @auth
                             <a
-                            href="#"
+                            href="/pesanan/{{ Auth::user()->id }}"
                             class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
                             >
 
-                            Sewa Tenda
+                            Lihat Pesanan
                             <span><i class="fas fa-angle-right float-right"></i></span>
                             </a>
+                            @else
+                            <a
+                            href="{{ route('login') }}"
+                            class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline"
+                            >
+
+                            Lihat Pesanan
+                            <span><i class="fas fa-angle-right float-right"></i></span>
+                            </a>
+                            @endauth
+                        @endif
                         </li>
                         <li
                             class="w-full h-full py-3 px-2 border-b border-light-border bg-white"
