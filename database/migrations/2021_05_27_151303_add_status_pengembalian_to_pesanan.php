@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePengembalianTable extends Migration
+class AddStatusPengembalianToPesanan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreatePengembalianTable extends Migration
      */
     public function up()
     {
-        Schema::create('pengembalian', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('pesanan', function (Blueprint $table) {
+            $table->tinyInteger('status_pengembalian')->default(0);
         });
     }
 
@@ -26,6 +25,8 @@ class CreatePengembalianTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengembalian');
+        Schema::table('pesanan', function (Blueprint $table) {
+            //
+        });
     }
 }

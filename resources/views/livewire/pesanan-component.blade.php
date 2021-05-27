@@ -24,7 +24,8 @@
                                 <th scope="col">Jumlah Pesanan</th>                                
                                 <th scope="col">Tanggal Mulai</th>
                                 <th scope="col">Tanggal Selesai</th>
-                                <th scope="col">Konfirmasi</th>                         
+                                <th scope="col">Konfirmasi</th>                                                              
+                                <th scope="col">Aksi</th>                                                       
                             </tr>
                         </thead>
                     <tbody>
@@ -37,12 +38,23 @@
                         <td>{{ $pesanan->tanggal_mulai }}</td>
                         <td>{{ $pesanan->tanggal_selesai }}</td>
                         @if ($pesanan->konfirm == 0)
-                            <td class="text-red-500 font-bold">Belum Dikonfirmasi</td>
+                            <td class="text-black font-bold">Belum Dikonfirmasi</td>
+                            <td> 
+                                <button wire:click="destroy({{ $pesanan->id }})" class=" bg-red-500 hover:bg-red-700 text-white text-sm font-bold py-2 px-2 mt-2 rounded focus:outline-none focus:shadow-outline">
+                                    Hapus Pesanan
+                                </button>
+                            </td>
                         @elseif ($pesanan->konfirm == 1)
-                            <td class="text-green-500 font-bold">Sudah Dikonfirmasi</td> 
+                            <td class="text-green-500 font-bold">Sudah Dikonfirmasi</td>
+                            <td class="text-red-500 font-bold">  Silahkan ambil barang</td> 
                         @else
-                            <td class="text-red-500 font-bold text-md">Barang Tidak Bisa Dipesan Karena Terjadi Kendala</td>                         
-                        @endif
+                            <td class="text-red-500 font-bold text-md">Barang Tidak Bisa Dipesan Karena Terjadi Kendala</td>
+                            <td> 
+                                <button wire:click="destroy({{ $pesanan->id }})" class=" bg-red-500 hover:bg-red-700 text-white text-sm font-bold py-2 px-2 mt-2 rounded focus:outline-none focus:shadow-outline">
+                                    Hapus Pesanan
+                                </button>
+                            </td>                         
+                        @endif                     
                                                                                               
                     </tr>
                     @endforeach                       
