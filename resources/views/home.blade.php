@@ -1,5 +1,5 @@
 @section('title')
-    Sewa Barang
+    Sewa Tenda
 @endsection
 
 <x-master-layout>
@@ -42,14 +42,10 @@
               <thead class="bg-grey-dark text-white text-normal">
                   <tr>
                   <th scope="col">No</th>
-                  <th scope="col">Id Barang</th>
-                  <th scope="col">Nama Barang</th>
-                  <th scope="col">Jenis Barang</th>
-                  <th scope="col">Stok</th>
+                  <th scope="col">Gambar</th>
+                  <th scope="col">Nama Barang</th>                      
                   <th scope="col">Harga</th>
-                  <th scope="col">Harga Ganti Rusak</th>
-                  <th scope="col">Harga Ganti Hilang</th>
-                  <th scope="col">Aksi</th>
+                  <th scope="col" class="text-center">Aksi</th>
                   
                   </tr>
               </thead>
@@ -58,16 +54,13 @@
                                               
                   <tr>
                       <th scope="row">{{ $loop->iteration }}</th>                        
-                      <td>{{ $brg->id_barang }}</td>
-                      <td>{{ $brg->nama }}</td>
-                      <td>{{ $brg->jenisBarang->jenis_barang }}</td>
-                      <td>{{ $brg->stok }}</td>
-                      <td> @money($brg->harga)</td>                            
-                      <td> @money($brg->ganti_rusak)  </td>
-                      <td> @money($brg->ganti_hilang)</td>
-                      <td>
+                      <td> <img width="100px" src="{{ url('storage/photos/'.$brg->gambar) }}"> </td>
+                      <td>{{ $brg->nama }}</td>                                    
+                      <td> @money($brg->harga)</td>                                      
+                      <td class="text-center">
                         <a href="/sewa/{{ $brg->id_barang }}" class="w-2 bg-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sewa</a>
-                      </td>                                                                             
+                        {{-- <button class="w-1/3 bg-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Detail</button> --}}
+                      </td>                                                                                 
                   </tr>
                   @endforeach                       
               </tbody>

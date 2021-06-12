@@ -1,4 +1,7 @@
 <div> 
+    @section('title')
+        Dashboard Admin
+    @endsection
         <main class="bg-white-300 flex-1 p-3 overflow-hidden">
             <div class="flex flex-col">                                             
                 
@@ -29,7 +32,7 @@
                                 </form>
 
                                 @if (session()->has('message'))
-                                    <div class="bg-gradient-to-r from-green-400 to-blue-500 border-l-4 border-black-500 text-white-700 p-4 mb-3 mt-3" role="alert">
+                                    <div class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" role="alert">
                                         <h1 class="text-white font-semibold">{{ session('message') }}</h1>
                                     </div>
                                 @endif
@@ -55,39 +58,49 @@
                         <thead class="bg-grey-dark text-white text-normal">
                             <tr>
                                 <th scope="col">No</th>
+                                <th scope="col">Gambar</th>
                                 <th scope="col">Id Barang</th>
                                 <th scope="col">Nama Barang</th>
-                        <th scope="col">Jenis Barang</th>
-                        <th scope="col">Stok</th>
-                        <th scope="col">Harga</th>
-                        <th scope="col">Harga Ganti Rusak</th>
-                        <th scope="col">Harga Ganti Hilang</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($barang as $brg)
-                    
-                    <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>                        
-                        <td>{{ $brg->id_barang }}</td>
-                        <td>{{ $brg->nama }}</td>
-                        <td>{{ $brg->jenisBarang->jenis_barang }}</td>
-                        <td>{{ $brg->stok }}</td>
-                        <td>{{ $brg->harga }}</td>
-                        <td>{{ $brg->ganti_rusak }}</td>
-                        <td>{{ $brg->ganti_hilang }}</td>
-                        
-                        <td class="text-sm font-medium">
-                            {{-- editData({{ $brg->id_barang }}) --}}
-                            <button wire:click="edit('{{$brg->id_barang}}')" class="text-indigo-600 hover:text-indigo-900">
-                                Edit
-                            </button>                                
-                            <button wire:click="delete('{{ $brg->id_barang }}')" onclick="return confirm('Yakin Hapus Data?')" class="text-red-600 hover:text-indigo-900">
-                                Hapus
-                            </button>
-                        </td>                                                    
-                    </tr>
+                                <th scope="col">Jenis Barang</th>
+                                <th scope="col">Stok</th>
+                                <th scope="col">Harga</th>
+                                <th scope="col">Harga Ganti Rusak</th>
+                                <th scope="col">Harga Ganti Hilang</th>
+                                <th scope="col">Deskripsi</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($barang as $brg)
+                            
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th> 
+                                <td>
+                                    @if (!empty($brg->gambar))
+                                        <img width="100px" src="{{ url('storage/photos/'.$brg->gambar) }}">
+                                    @else
+                                        Gambar tidak berisi
+                                    @endif    
+                                </td>                       
+                                <td>{{ $brg->id_barang }}</td>
+                                <td width="200px">{{ $brg->nama }}</td>
+                                <td>{{ $brg->jenisBarang->jenis_barang }}</td>
+                                <td>{{ $brg->stok }}</td>
+                                <td width="125px">@money($brg->harga)</td>
+                                <td>@money($brg->ganti_rusak)</td>
+                                <td>@money($brg->ganti_hilang)</td>
+                                <td>{{ $brg->deskripsi }}</td>
+                                
+                                <td class="text-sm font-medium">
+                                    {{-- editData({{ $brg->id_barang }}) --}}
+                                    <button wire:click="edit('{{$brg->id_barang}}')" class="text-indigo-600 hover:text-indigo-900">
+                                        Edit
+                                    </button>                                
+                                    <button wire:click="delete('{{ $brg->id_barang }}')" onclick="return confirm('Yakin Hapus Data?')" class="text-red-600 hover:text-indigo-900">
+                                        Hapus
+                                    </button>
+                                </td>                                                    
+                            </tr>
                     @endforeach                       
                 </tbody>
             </table>

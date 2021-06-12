@@ -29,11 +29,10 @@ class SewaComponent extends Component
 
     public function mount($id)
     { 
-        $this->barang = Barang::with('jenisBarang')->find($id);
+        $this->barang = Barang::with('jenisBarang')->find($id);     
     }
 
-    public function store($id){        
-
+    public function store($id){                
         $this->validate(
             [
                 'jumlah_pesanan'    =>  'required|numeric',
@@ -42,9 +41,7 @@ class SewaComponent extends Component
             ]
         );
 
-        $user_id = auth()->user()->id;
-        
-        
+        $user_id = auth()->user()->id;                
         
         Pesanan::create([
             'jumlah_pesanan'    => $this->jumlah_pesanan,

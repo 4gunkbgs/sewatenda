@@ -1,4 +1,7 @@
 <div> 
+    @section('title')
+        Pesanan
+    @endsection
         <main class="bg-white-300 flex-1 p-3 overflow-hidden">
             <div class="flex flex-col">                                             
                 

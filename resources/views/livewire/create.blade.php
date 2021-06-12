@@ -10,17 +10,36 @@
       <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
         
         <form class="w-3/4">
-            <div>
-                <h1 class="font-bold text-center"> Tambah Barang </h1>    
-            </div>           
+            @if($formStatus == 'edit')
+                <img width="100px" src="{{ url('storage/photos/'.$gambar) }}">
+                @if ($errors->has('gambar'))
+                    <p class="text-red-500 text-xs italic">{{ $errors->first('gambar') }}</p>
+                @endif
+                <label class="block uppercase tracking-wide text-gray-700 text-sm font-bold mt-3 mb-2" for="grid-first-name">
+                    Edit Gambar
+                </label>           
+                <input type="file" class="mb-3" wire:model="gambar">
+            @else
+            @if ($errors->has('gambar'))
+                <p class="text-red-500 text-xs italic">{{ $errors->first('gambar') }}</p>
+            @endif
+            <label class="block uppercase tracking-wide text-gray-700 text-sm font-bold mt-3 mb-2" for="grid-first-name">
+                Masukkan Gambar
+            </label>           
+            <input type="file" class="mb-3" wire:model="gambar">      
+            @endif                            
+
             <label class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2" for="grid-first-name">
                 Id Barang
             </label>
             @if ($errors->has('id_barang'))
                 <p class="text-red-500 text-xs italic">{{ $errors->first('id_barang') }}</p>
             @endif
-            <input @if($formStatus == 'edit') disabled @endif required wire:model="id_barang" type="text" placeholder="Msl. T001 P001 L001" name="id_barang" class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-            
+            @if($formStatus == 'edit')
+                <input disabled required wire:model="id_barang" type="text" placeholder="Msl. T001 P001 L001" name="id_barang" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+            @else
+                <input required wire:model="id_barang" type="text" placeholder="Msl. T001 P001 L001" name="id_barang" class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+            @endif
 
             <label class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2" for="grid-first-name">
                 Nama Barang
@@ -88,10 +107,18 @@
             @if ($errors->has('ganti_hilang'))
                 <p class="text-red-500 text-xs italic">{{ $errors->first('ganti_hilang') }}</p>
             @endif
-            <input required wire:model="ganti_hilang" type="number" placeholder="Rp. 10.000 Ditulis 10000 Saja." name="ganti_hilang" class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name">                    
+            <input required wire:model="ganti_hilang" type="number" placeholder="Rp. 10.000 Ditulis 10000 Saja." name="ganti_hilang" class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name">
+            
+            @if ($errors->has('deskripsi'))
+                <p class="text-red-500 text-xs italic">{{ $errors->first('deskripsi') }}</p>
+            @endif
+            <label class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2" for="grid-first-name">
+                Deskripsi Barang
+            </label>
+            <textarea wire:model="deskripsi" type="text" class="appearance-none block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" rows="4"> </textarea>
 
             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button wire:click.prevent="store()" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                <button wire:click="store()" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                     Save
                 </button>
                 <button wire:click.prevent="hideModal()" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-500 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
