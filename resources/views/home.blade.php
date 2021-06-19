@@ -20,8 +20,8 @@
             </div>
             <div class="px-6 py-2 border-b border-light-grey">
               {{-- search bar --}}
-              <div class="pt-2 relative mx-auto text-gray-600">
-                <form action="{{ route('search2') }}" method="get">
+              <div class="pt-2 relative mx-auto text-gray-600 flex justify-between">                
+                    <form action="{{ route('search2') }}" method="get">
                     <input placeholder="Cari Barang .." type="search" name="search" placeholder="Search" class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none">
                     <button type="submit" class="relative left-0 top-0 mt-5 ml-4">
                     <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" width="512px" height="512px">
@@ -29,13 +29,15 @@
                     </svg>                          
                   </button>
                 </form>
+                @if (session()->has('message'))
+                  <div class="text-center bg-green-500 hover:bg-green-700 text-white w-1/2 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">                   
+                    {{ session('message') }}
+                  </div>
+                @endif                               
               </div>
+              
               {{-- end search bar --}}
-              @if (session()->has('message'))
-                <div class="">
-                  {{ session('message') }}
-                </div>
-              @endif
+              
             </div>
             <div class="table-responsive">
               <table class="table text-grey-darkest">
@@ -45,6 +47,7 @@
                   <th scope="col">Gambar</th>
                   <th scope="col">Nama Barang</th>                      
                   <th scope="col">Harga</th>
+                  <th scope="col">Stok</th>
                   <th scope="col" class="text-center">Aksi</th>
                   
                   </tr>
@@ -56,7 +59,8 @@
                       <th scope="row">{{ $loop->iteration }}</th>                        
                       <td> <img width="100px" src="{{ url('storage/photos/'.$brg->gambar) }}"> </td>
                       <td>{{ $brg->nama }}</td>                                    
-                      <td> @money($brg->harga)</td>                                      
+                      <td> @money($brg->harga)</td> 
+                      <td> {{ $brg->stok }}</td>                                     
                       <td class="text-center">
                         <a href="/sewa/{{ $brg->id_barang }}" class="w-2 bg-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sewa</a>
                         {{-- <button class="w-1/3 bg-green-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Detail</button> --}}

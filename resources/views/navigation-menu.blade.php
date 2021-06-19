@@ -35,6 +35,11 @@
                                 {{ __('Pengembalian') }}
                             </x-jet-nav-link>                                                                           
                         </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-jet-nav-link href="{{ route('tambahJenisBarang') }}" :active="request()->routeIs('tambahJenisBarang')">
+                                {{ __('Tambah Jenis Barang') }}
+                            </x-jet-nav-link>                                                                           
+                        </div>
                         @else
                         <div class="flex-shrink-0 flex items-center">
                             <a

@@ -10,6 +10,7 @@ use App\Http\Livewire\DashboardPage;
 use App\Http\Livewire\PesananComponent;
 use App\Http\Livewire\EditPesanan;
 use App\Http\Livewire\PengembalianComponent;
+use App\Http\Livewire\TambahJenisBarang;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/dashboard', DashboardPage::class)->name('dashboard');
         Route::get('/pesanan', EditPesanan::class)->name('editPesanan');
         Route::get('/pengembalian', PengembalianComponent::class)->name('pengembalian');
+        Route::get('/tambahJenisBarang', TambahJenisBarang::class)->name('tambahJenisBarang');
 
         // Route::get('/tambah', [AdminController::class, 'create'])->name('create');
         // Route::get('/tambah', Dashboard::class)->name('create');

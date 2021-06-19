@@ -83,7 +83,7 @@
                                     @endif    
                                 </td>                       
                                 <td>{{ $brg->id_barang }}</td>
-                                <td width="200px">{{ $brg->nama }}</td>
+                                <td width="150px">{{ $brg->nama }}</td>
                                 <td>{{ $brg->jenisBarang->jenis_barang }}</td>
                                 <td>{{ $brg->stok }}</td>
                                 <td width="125px">@money($brg->harga)</td>
