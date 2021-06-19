@@ -49,7 +49,7 @@
                             </td>
                         @elseif ($pesanan->konfirm == 1)
                             <td class="text-green-500 font-bold">Sudah Dikonfirmasi</td>
-                            <td class="text-red-500 font-bold">  Silahkan ambil barang</td> 
+                            <td class="text-red-500 font-bold">Silahkan ambil barang</td> 
                         @else
                             <td class="text-red-500 font-bold text-md">Barang Tidak Bisa Dipesan Karena Terjadi Kendala</td>
                             <td> 

@@ -4,10 +4,12 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Pesanan;
+use App\Models\Barang;
 
 class EditPesanan extends Component
 {
-    public $pesanans;    
+    public $pesanans;
+    public $barang;    
     
 
     public function render()
@@ -18,7 +20,13 @@ class EditPesanan extends Component
 
     public function konfirm($id){
 
-        $pesanan = Pesanan::find($id);
+        $pesanan = Pesanan::find($id);         
+        $barang = Barang::find($pesanan->barang_id);             
+        
+        if ($pesanan->barang_id == $barang->id_barang){            
+             $barang->stok = $barang->stok - $pesanan->jumlah_pesanan;
+             $barang->save();
+        }
 
         $pesanan->konfirm = 1;
         $pesanan->save(); 

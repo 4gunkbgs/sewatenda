@@ -15,6 +15,7 @@ class SewaComponent extends Component
     public $barang;
     public $jenisbarang;
     public $jumlah_pesanan, $tanggal_mulai, $tanggal_selesai, $barang_id;
+    public $validasi = true;
 
 
     public function render()
@@ -32,7 +33,8 @@ class SewaComponent extends Component
         $this->barang = Barang::with('jenisBarang')->find($id);     
     }
 
-    public function store($id){                
+    public function store($id){
+              
         $this->validate(
             [
                 'jumlah_pesanan'    =>  'required|numeric',
@@ -43,17 +45,22 @@ class SewaComponent extends Component
 
         $user_id = auth()->user()->id;                
         
-        Pesanan::create([
-            'jumlah_pesanan'    => $this->jumlah_pesanan,
-            'tanggal_mulai'     => $this->tanggal_mulai,
-            'tanggal_selesai'   => $this->tanggal_selesai,
-            'barang_id'         => $id,
-            'users_id'          => $user_id,
-        ]);
+        if ($this->barang->stok - $this->jumlah_pesanan < 0){
+            $this->validasi = false;                                
+        } else {
+            Pesanan::create([
+                'jumlah_pesanan'    => $this->jumlah_pesanan,
+                'tanggal_mulai'     => $this->tanggal_mulai,
+                'tanggal_selesai'   => $this->tanggal_selesai,
+                'barang_id'         => $id,
+                'users_id'          => $user_id,
+            ]);
 
-        session()->flash('message', 'Berhasil Menyewa! Silahkan Cek Pesanan Anda');
+            session()->flash('message', 'Berhasil Menyewa! Silahkan Cek Pesanan Anda');
 
-        return redirect()->to('/');
+            return redirect()->to('/');
+        }                
+        
     }
 
     
