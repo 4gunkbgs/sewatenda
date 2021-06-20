@@ -57,7 +57,7 @@
                     @endif
                     @if(!$validasi)
                     <p class="text-red-500 text-xs italic">
-                        GA NGOTAK MESENNYA AJG
+                        Barang yang dipesan melebihi stok.
                     </p>                    
                     @endif 
 
